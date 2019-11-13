@@ -1,0 +1,17 @@
+﻿<h3>Your environment is: @OS (last refreshed at: @Refresh)</h3>
+<button @onclick="DoRefresh">Refresh Environment</button>
+@code {
+    public string OS { get; set;} = "Not Set";
+    public string Refresh { get; set; } = "never";
+
+    protected override void OnInitialized()
+    {
+        DoRefresh();
+    }
+
+    public void DoRefresh()
+    {
+        OS = Environment.OSVersion.VersionString;
+        Refresh = DateTime.Now.ToString();
+    }
+}

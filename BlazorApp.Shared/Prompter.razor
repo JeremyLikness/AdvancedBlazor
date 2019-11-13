@@ -1,0 +1,14 @@
+﻿@inject IJSRuntime JsRuntime
+<div class="my-component">
+    This Blazor component is defined in the <strong>BlazorApp.Shared</strong> package.
+</div>
+<button @onclick="GetText">Enter Text</button>
+<p>Prompt text: @Text</p>
+@code {
+    public string Text { get; set; } = "Click the button to change this.";
+    public async void GetText()
+    {
+        Text = await ExampleJsInterop.Prompt(JsRuntime, "Enter your text:");
+        StateHasChanged();
+    }
+}
